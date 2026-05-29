@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ad Compromizer</title>
+
+  <style>
+
+    body {
+      width: 260px;
+      padding: 15px;
+      background: #121212;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    #setPrimary {
+      background: #d32f2f;
+      color: white;
+    }
+
+    #toggleProtection {
+      background: #1976d2;
+      color: white;
+    }
+
+    #clearOthers {
+      background: #616161;
+      color: white;
+    }
+
+    #status {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <h2>Ad Compromizer</h2>
+
+  <button id="setPrimary">
+    Set This as Primary Tab
+  </button>
+
+  <button id="toggleProtection">
+    Enable Protection
+  </button>
+
+  <button id="clearOthers">
+    Clear All Except Primary
+  </button>
+
+  <p id="status"></p>
+
+  <script src="popup.js"></script>
+
+</body>
+
+</html>
