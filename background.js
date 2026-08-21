@@ -1,5 +1,35 @@
 let primaryTabId = null;
 
+
+// ==========================================
+// HANDLE MESSAGES FROM CONTENT SCRIPT
+// ==========================================
+
+chrome.runtime.onMessage.addListener((message, sender) => {
+
+  if (message.type === "newWindowOpened") {
+
+    chrome.storage.local.get("redirectCount", (data) => {
+
+      const count = (data.redirectCount || 0) + 1;
+
+      chrome.storage.local.set({
+        redirectCount: count
+      });
+
+      console.log("Redirect Count:", count);
+
+    });
+
+  }
+
+});
+
+
+// ==========================================
+// EXTENSION INSTALLED
+// ==========================================
+
 chrome.runtime.onInstalled.addListener(() => {
 
   chrome.contextMenus.create({
@@ -28,6 +58,11 @@ chrome.runtime.onInstalled.addListener(() => {
 
 });
 
+
+// ==========================================
+// HANDLE NEW TABS
+// ==========================================
+
 chrome.tabs.onCreated.addListener((tab) => {
 
   chrome.storage.local.get(
@@ -53,11 +88,21 @@ chrome.tabs.onCreated.addListener((tab) => {
 
 });
 
+
+// ==========================================
+// CONTEXT MENU ACTIONS
+// ==========================================
+
 chrome.contextMenus.onClicked.addListener((info, tab) => {
 
   if (!tab || !tab.id) return;
 
   const tabId = tab.id;
+
+
+  // ------------------------------
+  // SET PRIMARY TAB
+  // ------------------------------
 
   if (info.menuItemId === "setPrimary") {
 
@@ -69,6 +114,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 
   }
 
+
+  // ------------------------------
+  // ENABLE PROTECTION
+  // ------------------------------
+
   if (info.menuItemId === "enableProtection") {
 
     chrome.storage.local.set({
@@ -78,6 +128,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     console.log("Protection Enabled");
 
   }
+
+
+  // ------------------------------
+  // DISABLE PROTECTION
+  // ------------------------------
 
   if (info.menuItemId === "disableProtection") {
 
@@ -89,6 +144,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 
   }
 
+
+  // ------------------------------
+  // CLEAR OTHER TABS
+  // ------------------------------
+
   if (info.menuItemId === "clearOthers") {
 
     clearAllExceptPrimary();
@@ -96,6 +156,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   }
 
 });
+
+
+// ==========================================
+// CLEAR ALL TABS EXCEPT PRIMARY
+// ==========================================
 
 function clearAllExceptPrimary() {
 
@@ -108,7 +173,9 @@ function clearAllExceptPrimary() {
         for (const t of tabs) {
 
           if (t.id !== data.primaryTabId) {
+
             chrome.tabs.remove(t.id);
+
           }
 
         }
