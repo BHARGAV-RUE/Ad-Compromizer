@@ -6,7 +6,8 @@
     "tabs",
     "storage",
     "contextMenus",
-    "webNavigation"
+    "webNavigation",
+    "webRequest"
   ],
   "host_permissions": [
     "<all_urls>"
