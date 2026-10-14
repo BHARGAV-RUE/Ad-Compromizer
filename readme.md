@@ -142,3 +142,5 @@ Built and tested against Chrome's Manifest V3 (`chrome.*` namespace, `service_wo
 - Service workers in MV3 are event-driven and can be terminated after a period of inactivity; the in-memory maps (`restoringTabs`, `redirectChainTabs`, `primaryNavigationState`) reset if that happens mid-incident, though `chrome.storage.local` state (Primary Tab, Protection, counters) survives.
 - Redirects triggered via a genuine user click can be indistinguishable from a script-simulated "click-hijack" redirect at the API level — Chrome doesn't expose enough signal to tell them apart with certainty in all cases. The `webRequest`-based chain tracking narrows this gap for server-side redirects but isn't a complete guarantee for every JS-driven pattern.
 - Only one Primary Tab is supported at a time.
+
+  
