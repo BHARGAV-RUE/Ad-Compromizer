@@ -12,7 +12,7 @@ The redirect is allowed to fire (since many redirect mechanisms are impossible t
 
 ---
 
-## 1. Core Concept
+## 1. Core Concept 
 
 You designate **one tab** as the **Primary Tab** — the page you want to stay on (e.g. a video/streaming page prone to ad-injected redirects). You then turn on **Protection** for that tab. From that point on:
 
@@ -35,7 +35,7 @@ No account, login, or external server is involved — everything runs locally vi
 
 ---
 
-## 3. How to Use It
+## 3. How to Use It 
 
 **Step 1 — Set a Primary Tab**
 Open the page you want to protect, click the extension icon, and press **Set as Primary Tab**. The button turns blue and reads "Remove Primary" while you're on that tab; on any other tab it reads "Set as Primary" in green.
@@ -58,7 +58,7 @@ You can also do all of the above from the right-click context menu: *Set as Prim
 
 ---
 
-## 4. Technical Breakdown
+## 4. Technical Breakdown 
 
 ### 4.1 State model
 Everything lives in `chrome.storage.local`:
